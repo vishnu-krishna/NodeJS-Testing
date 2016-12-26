@@ -13,6 +13,6 @@ app.use(express.static(path.join(__dirname + '/public')));
 //app.get('*',function(req,res){
 //    res.send('index.html');
 //})
-app.listen(3000,function(){
-    console.log("Application Started");
+app.listen(process.env.PORT || 3000, function(){
+    console.log('listening on', app.address().port);
 });
