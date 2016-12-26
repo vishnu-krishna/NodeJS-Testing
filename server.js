@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 app.get('/',function(req,res){
     res.send({name:"Vishnu"});
 })
-var port = process.env.port || 52078;
+var port = process.env.PORT || 52078;
 app.listen(port, function () {
     console.log('Example app listening on port' + port);
 });
