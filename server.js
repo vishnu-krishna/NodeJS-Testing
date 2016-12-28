@@ -1,19 +1,27 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var app = express();
-var path = require ('path');
-
-//app.engine('html', require('ejs').renderFile);
-//app.set('view engine', 'html');
-//app.set('views', __dirname);
-//app.set('view engine', 'jade');
+var path = require('path');
+var jobModel = require('./models/job');
+var jobsData = require('./jobs-data');
 
 
-//app.use(express.static(__dirname + '/public'));
+
+jobsData.connectDB('mongodb://vishnu:vishnu@ds031087.mlab.com:31087/mlearning').then(function () {
+    console.log("Connected to MongoLab");
+    jobModel.seedJobs();
+});
+
 app.use(express.static(path.join(__dirname + '/public')));
-app.get('/',function(req,res){
-    res.send({name:"Vishnu"});
+app.get('/api/jobs', function (req, res) {
+    jobsData.findJobs({}).then(function(results) {
+        res.send(results);
+    });
+});
+app.get('/', function (req, res) {
+    res.send({name: "Vishnu"});
 })
-var port = process.env.PORT || 52078;
+var port = process.env.PORT || 3000;
 app.listen(port, function () {
-    console.log('Example app listening on port' + port);
+    console.log('Application Listening on ' + port);
 });
