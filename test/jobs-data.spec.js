@@ -23,10 +23,10 @@ describe('get Jobs', function () {
             .then(jobModel.seedJobs())
             .then(jobsData.findJobs)
             .then(function (collection) {
-                jobs = collection
+                jobs = collection;
                 done();
             });
-    })
+    });
 
     it("should never be empty since jobs are seeded", function () {
         expect(jobs.length).to.be.at.least(1);

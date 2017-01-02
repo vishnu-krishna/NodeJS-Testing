@@ -5,8 +5,6 @@ var path = require('path');
 var jobModel = require('./models/job');
 var jobsData = require('./jobs-data');
 
-
-
 jobsData.connectDB('mongodb://vishnu:vishnu@ds031087.mlab.com:31087/mlearning').then(function () {
     console.log("Connected to MongoLab");
     jobModel.seedJobs();
